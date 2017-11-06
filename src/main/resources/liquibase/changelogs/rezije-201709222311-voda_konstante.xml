@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="201709232311" author="ifarszky">
+        <createSequence sequenceName="voda_konstante_seq" minValue="1" incrementBy="1" />
+
+        <createTable tableName="voda_konstante">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="voda_konstante_pk"/>
+            </column>
+            <column name="fix_voda" type="DECIMAL(4, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fix_odvodnja" type="DECIMAL(4, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="voda_po_metru" type="DECIMAL(4, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="odvodnja_po_metru" type="DECIMAL(4, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pdv_postotak" type="DECIMAL(4, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nak_za_koristenje" type="DECIMAL(4, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nak_za_zastitu" type="DECIMAL(4, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nak_za_razvoj" type="DECIMAL(4, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
