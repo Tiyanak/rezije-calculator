@@ -1,75 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Button, HelpBlock } from 'react-bootstrap';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import VodaComponent from "./components/voda-component/VodaComponent"
 import PlinComponent from "./components/plin-component/PlinComponent"
+import RezijeButtonsComponent from "./components/rezije-buttons-component/RezijeButtonsComponent"
+import NazadComponent from "./components/nazad-button-component/NazadComponent"
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
 
     constructor() {
         super();
-
-        this.state = {
-            vodaClicked: false,
-            plinClicked: false
-        };
-
-        this.handleVodaClick = this.handleVodaClick.bind(this);
-        this.handlePlinClick = this.handlePlinClick.bind(this);
-        this.handleNazadClick = this.handleNazadClick.bind(this);
-
-    }
-
-    handleVodaClick() {
-        this.setState({
-            vodaClicked: true
-        });
-    }
-
-    handlePlinClick() {
-        this.setState({
-            plinClicked: true
-        });
-    }
-
-    handleNazadClick() {
-        this.setState({
-            plinClicked: false,
-            vodaClicked: false
-        })
     }
 
     render() {
         return (
-          <div className="App">
+            <Router>
+                <MuiThemeProvider muiTheme={getMuiTheme()}>
+                    <div className="App">
 
-              <header className="App-header">
-                  <div className="d-inline-block">
-                      {this.state.vodaClicked || this.state.plinClicked ?
-                          <button className="Nazad-btn btn btn-default nazad-btn pull-left"
-                                  onClick={this.handleNazadClick}>
-                              <span className="Nazad-icon glyphicon glyphicon-arrow-left pull-left"></span> Nazad
-                          </button>
-                          : null
-                      }
-                      <h3 className="App-title">Izračun kućnih režija</h3>
-                  </div>
-              </header>
+                        <header className="App-header">
+                            <div className="d-inline-block">
+                                {["/voda", "/plin"].map(path => <Route path={path} component={NazadComponent}/>)}
+                                <h3 className="App-title">Izračun kućnih režija</h3>
+                            </div>
+                        </header>
 
-              <br/>
+                        <br/>
 
-              {(this.state.vodaClicked == false && this.state.plinClicked == false) ?
-                  <div className="Rezije-btn">
-                      <button className="Voda-btn btn btn-primary voda-btn" onClick={this.handleVodaClick}>Voda</button>
-                      <button className="Plin-btn btn btn-secundary plin-btn" onClick={this.handlePlinClick}>Plin</button>
-                  </div>
-                  : null
-              }
+                        <Route exact path="/" component={RezijeButtonsComponent} />
+                        <Route exact path="/voda" component={VodaComponent} />
+                        <Route exact path="/plin" component={PlinComponent} />
 
-              {this.state.vodaClicked ? <VodaComponent /> : null}
-              {this.state.plinClicked ? <PlinComponent /> : null}
+                    </div>
+                </MuiThemeProvider>
 
-          </div>
+            </Router>
         );
     }
 }

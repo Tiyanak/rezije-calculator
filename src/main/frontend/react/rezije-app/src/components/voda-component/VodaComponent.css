@@ -1,0 +1,27 @@
+.tableWrapper {
+    width: 800px;
+}
+
+.myTable {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+    border: none;
+}
+
+td, th {
+    text-align: center;
+}
+
+thead {
+    color: white;
+    background-color: black;
+}
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
